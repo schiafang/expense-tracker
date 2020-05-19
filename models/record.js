@@ -1,11 +1,22 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const recordSchema = new Schema({
-  // 支出名稱：name
-  // 類別：category
-  // 日期：date
-  // 金額：amount
-  // 在首頁看到的總金額：totalAmount
+// const CategorySchema = new Schema({
+//   name: String,
+//   icon: String
+// })
+// const RecordSchema = new Schema({
+//   name: {
+//     type: String,
+//     require: true
+//   },
+//   category: [CategorySchema],
+//   date: Date,
+//   amount: Number,
+//   totalAmount: String,
+// })
+
+
+const RecordSchema = new Schema({
   name: {
     type: String,
     require: true
@@ -13,7 +24,6 @@ const recordSchema = new Schema({
   category: String,
   date: String,
   amount: Number,
-  totalAmount: String
+  totalAmount: String,
 })
-
-module.exports = mongoose.model('Record', recordSchema)
+module.exports = mongoose.model('Record', RecordSchema)
