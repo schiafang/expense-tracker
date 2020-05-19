@@ -37,8 +37,16 @@
     </div>
     <div class="col-2" style="display: flex; align-items:center;">
       <div>
-        <i class="fas fa-pen-square" style="font-size: 20px; color:rgb(185, 184, 184)"></i>
-        <i class="ml-2 fas fa-minus-square" style="font-size: 20px; color:rgb(118, 118, 118)"></i>
+        <form action="/record/?_method=DELETE" method="POST">
+          <button type="submit">
+            <i class="fas fa-pen-square" style="font-size: 20px; color:rgb(185, 184, 184)"></i>
+          </button>
+        </form>
+        <form action="/record/{{this._id}}?_method=DELETE" method="POST">
+          <button type="submit">
+            <i class="ml-2 fas fa-minus-square" style="font-size: 20px; color:rgb(118, 118, 118)"></i>
+          </button>
+        </form>
       </div>
     </div>
     {{/each}}

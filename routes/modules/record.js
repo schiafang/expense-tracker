@@ -19,11 +19,9 @@ router.post('/create', (req, res) => {
       promise = []
       for (let i = 0; i < record.length; i++) {
         promise.push(record[i])
-        if (body.category === promise[i].categoryName) {
-          body.icon = promise[i].icon
-        }
+        if (body.category === '支出類別') { body.category = '其他' }
+        if (body.category === promise[i].categoryName) { body.icon = promise[i].icon }
       }
-      console.log(body)
       return Record.create(body)
     })
     .then(() => res.redirect('/'))
@@ -32,5 +30,14 @@ router.post('/create', (req, res) => {
 // -----Update----- //
 
 // -----Delete----- //
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .then(record => {
+      record.remove()
+      res.redirect('/')
+    })
+    .catch(error => console.log('error!'))
+})
 
 module.exports = router
