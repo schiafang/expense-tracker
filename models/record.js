@@ -7,7 +7,7 @@ const RecordSchema = new Schema({
   date: String,
   amount: Number,
   totalAmount: String,
-  categoryname: String,
+  categoryName: String,
   icon: String
 })
 

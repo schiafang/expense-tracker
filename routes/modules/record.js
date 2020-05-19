@@ -12,11 +12,23 @@ router.get('/create', (req, res) => {
 
 // -----Create----- //
 router.post('/create', (req, res) => {
-  Record.create(record)
+  const body = req.body
+  Record.find({ categoryName: { $regex: '' } })
+    .lean()
+    .then(record => {
+      promise = []
+      for (let i = 0; i < record.length; i++) {
+        promise.push(record[i])
+        if (body.category === promise[i].categoryName) {
+          body.icon = promise[i].icon
+        }
+      }
+      console.log(body)
+      return Record.create(body)
+    })
     .then(() => res.redirect('/'))
     .catch(error => console.log('error!'))
 })
-
 // -----Update----- //
 
 // -----Delete----- //

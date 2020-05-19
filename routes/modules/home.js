@@ -4,7 +4,6 @@ const Record = require('../../models/record')
 const Category = require('../../models/record')
 
 router.get('/', (req, res) => {
-
   Record.find({ name: { $regex: '' } })
     .lean()
     .then(record => {
