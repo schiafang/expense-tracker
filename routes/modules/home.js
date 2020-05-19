@@ -5,25 +5,18 @@ const Category = require('../../models/record')
 
 router.get('/', (req, res) => {
 
-  // let totalAmount = 0
-  // for (let i = 0; i <= record.length; i++) {
-  //   totalAmount += record[i].amount
-  // }
-  // console.log(totalAmount)
-  Record.find()
+  Record.find({ name: { $regex: '' } })
     .lean()
     .then(record => {
-
-      // let totalAmount = 0
-      // for (let i = 0; i <= record.length; i++) {
-      //   totalAmount += Number(record[i].amount)
-      // }
-      // console.log()
-
-      res.render('index', { record })
+      let totalAmount = 0
+      const promise = []
+      for (let i = 0; i < record.length; i++) {
+        promise.push(record[i])
+        totalAmount += Number(promise[i].amount)
+      }
+      res.render('index', { record, totalAmount })
     })
     .catch(error => console.log('route error!'))
 })
-
 
 module.exports = router

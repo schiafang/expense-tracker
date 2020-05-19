@@ -3,7 +3,8 @@ const db = require('../../config/mongoose')
 
 db.once('open', () => {
   console.log('MongoDB connected recordSeeder!')
-  Record.create(
+  const promise = []
+  promise.push(Record.create(
     {
       name: '午餐',
       category: '餐飲食品',
@@ -17,7 +18,7 @@ db.once('open', () => {
       amount: 180,
     },
     {
-      name: '電影：復仇者聯盟',
+      name: '電影',
       category: '休閒娛樂',
       date: '2020-5-18',
       amount: 180,
@@ -34,5 +35,9 @@ db.once('open', () => {
       date: '2020-5-18',
       amount: 10000,
     }
-  )
+  ))
+  Promise.all(promise).then(() => {
+    console.log('done to run recordSeeder')
+    db.close()
+  })
 })
