@@ -4,6 +4,7 @@ const Record = require('../../models/record')
 const Category = require('../../models/record')
 
 router.get('/', (req, res) => {
+  const filter = '全部支出'
   Record.find({ name: { $regex: '' } })
     .lean()
     .then(record => {
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
         promise.push(record[i])
         totalAmount += Number(promise[i].amount)
       }
-      res.render('index', { record, totalAmount })
+      res.render('index', { record, totalAmount, filter })
     })
     .catch(error => console.log('route error!'))
 })

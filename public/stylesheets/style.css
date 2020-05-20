@@ -2,35 +2,69 @@
   border: 0.5px solid pink;
 } */
 body {
-  /* background: linear-gradient(to left,#ECE9E6,#FFFFFF); */
   background: linear-gradient(to left,rgb(216,213,210),rgb(245,245,245));
 }
 /* Index page */
 .total-amount {
+  margin-top: -10px;
   font-size: 100px;
-  color: orange;
-  font-weight: 600;
+  color: rgb(232, 156, 15);
+  font-weight: 800;
+  font-family: 'Rubik', sans-serif;
+  font-style: italic;
 }
 .category-icon {
+  opacity: 90%;
   display: flex;
   justify-content: center;
   width: 50px; 
   margin-right: 10px;
 }
-.category-icon i {font-size: 50px;} 
-.category-icon .fa-home { color: teal; }
-.category-icon .fa-shuttle-van { color: rgb(79, 187, 227);}
-.category-icon .fa-grin-beam {color: rgb(34, 161, 87); }
+.category-icon i {
+  margin-top: 10px;
+  font-size: 40px;
+} 
+.category-icon .fa-home { color: rgb(193, 170, 56); }
+.category-icon .fa-shuttle-van { color: rgb(55, 126, 152);}
+.category-icon .fa-grin-beam {color: rgb(53, 140, 92); }
 .category-icon .fa-utensils { color: rgb(131, 64, 126);}
-.category-icon .fa-pen {color: rgb(145, 160, 165); }
+.category-icon .fa-pen {color: rgb(117, 123, 125); }
 
+#filter-category {
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 3px 4px 8px rgb(189, 189, 189);
+  width: 250px;
+}
+.list-amount {
+  font-family: 'Rubik', sans-serif;
+  color: rgb(147, 173, 184);
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 20px;
+}
+.list-name {
+  width: 115px;
+  margin-top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .edit-btn {
   border: none;
   background-color: transparent;
 }
 .edit-btn i {
   font-size: 25px; 
-  color:rgb(118, 118, 118);
+  color:rgb(120, 120, 120, 0.1);
+}
+.edit-btn .fa-pen-square:hover {
+  cursor: pointer;
+    color:rgb(120, 120, 120);
+
+}
+.edit-btn .fa-minus-square:hover {
+  cursor: pointer;
+  color:rgb(165, 55, 55);
 }
 
 /* New and edit page */
@@ -46,7 +80,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 .form-control {
   width: 205px;
   background-color: rgb(240, 240, 240,0.9);
@@ -56,10 +89,37 @@ body {
   color: rgb(100, 100, 100);
 }
 
+::-webkit-inner-spin-button { display: none; }   
+::-webkit-datetime-edit-text {  padding: 5px; } 
+
+
+option{ 
+background-color:#fff; 
+} 
+option:not(:checked) { 
+    background-color: #E0E0E0; 
+} 
+
 @media (min-width: 767.98px) {
   .record-list {
     width: 700px;
   }
+  .category-icon i {
+    font-size: 50px;
+    margin-top: 5px;
+  } 
+  .list-amount {
+  font-family: 'Rubik', sans-serif;
+  color: rgb(147, 173, 184);
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 30px;
 }
-::-webkit-inner-spin-button { display: none; }   
-::-webkit-datetime-edit-text {  padding: 5px; } 
+ .list-name {
+  width: 210px;
+}
+.edit-btn i {
+  font-size: 30px; 
+}
+
+}

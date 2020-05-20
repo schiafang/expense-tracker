@@ -22,7 +22,7 @@ router.get('/category', (req, res) => {
         promise.push(record[i])
         totalAmount += Number(promise[i].amount)
       }
-      res.render('index', { record, totalAmount })
+      res.render('index', { record, totalAmount, filter })
     })
     .catch(error => console.log('route error!'))
 })
@@ -31,10 +31,7 @@ router.get('/:id', (req, res) => {
   const id = req.params.id
   Record.findById(id)
     .lean()
-    .then(record => {
-      console.log(record)
-      res.render('edit', { record })
-    })
+    .then(record => { res.render('edit', { record }) })
     .catch(error => console.log('route error!'))
 })
 
@@ -58,7 +55,15 @@ router.post('/create', (req, res) => {
 
 // -----Update----- //
 router.put('/:id', (req, res) => {
-
+  const id = req.params.id
+  req.body.amount = Number(req.body.amount)
+  return Record.findById(id)
+    .then(record => {
+      record = Object.assign(record, req.body)
+      return record.save()
+    })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log('error!'))
 })
 
 // -----Delete----- //

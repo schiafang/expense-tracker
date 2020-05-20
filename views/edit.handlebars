@@ -6,7 +6,7 @@
   </div>
 </nav>
 <div class="container create-form">
-  <form action="/record/create" method="POST">
+  <form action="/record/{{record._id}}?_method=PUT" method="POST">
     <div class="form-group">
       <label for="expense"></label>
       <input type="text" class="form-control" id="expense" name="name" autocomplete="off" maxlength="12"

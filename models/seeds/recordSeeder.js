@@ -14,13 +14,6 @@ db.once('open', () => {
       icon: '<i class="fas fa-utensils"></i>'
     },
     {
-      name: '晚餐',
-      category: '餐飲食品',
-      date: '2020-05-18',
-      amount: 180,
-      icon: '<i class="fas fa-utensils"></i>'
-    },
-    {
       name: '電影',
       category: '休閒娛樂',
       date: '2020-05-18',
@@ -33,6 +26,13 @@ db.once('open', () => {
       date: '2020-05-18',
       amount: 80,
       icon: '<i class="fas fa-shuttle-van"></i>'
+    },
+    {
+      name: '信用卡費',
+      category: '其他',
+      date: '2020-05-18',
+      amount: 5600,
+      icon: '<i class="fas fa-pen"></i>'
     },
     {
       name: '房租',
