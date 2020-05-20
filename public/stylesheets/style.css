@@ -20,7 +20,7 @@ body {
   margin-top: 10px;
   font-size: 40px;
 } 
-.category-icon .fa-home { color: rgb(193, 170, 56); }
+.category-icon .fa-home { color: rgb(208, 177, 21); }
 .category-icon .fa-shuttle-van { color: rgb(55, 126, 152);}
 .category-icon .fa-grin-beam {color: rgb(53, 140, 92); }
 .category-icon .fa-utensils { color: rgb(131, 64, 126);}
@@ -33,7 +33,7 @@ body {
 }
 .list-amount {
   font-family: 'Rubik', sans-serif;
-  color: rgb(147, 173, 184);
+  color: rgb(94, 158, 185,0.8);
   font-weight: bold;
   letter-spacing: 1px;
   font-size: 20px;
@@ -57,19 +57,17 @@ body {
 }
 .edit-btn .fa-pen-square:hover {
   cursor: pointer;
-    color:rgb(120, 120, 120);
+  color:rgb(120, 120, 120);
+  font-size: 30px;
 }
 .edit-btn .fa-minus-square:hover {
   cursor: pointer;
   color:rgb(165, 55, 55);
+  font-size: 30px;
 }
 .list-group-item {
-  background-color: rgb(80, 80, 80,0.1);
   margin-top: 2px;
   border: none;
-}
-.list-group-item:hover {
-  background-color: rgb(80, 80, 80,0.2);
 }
 .record-list {
   overflow: auto;
@@ -102,13 +100,6 @@ body {
 ::-webkit-inner-spin-button { display: none; }   
 ::-webkit-datetime-edit-text {  padding: 5px; } 
 
-option{ 
-background-color:#fff; 
-} 
-option:not(:checked) { 
-    background-color: #E0E0E0; 
-} 
-
 @media (min-width: 767.98px) {
   .record-list {
     width: 700px;
@@ -118,16 +109,15 @@ option:not(:checked) {
     margin-top: 5px;
   } 
   .list-amount {
-  font-family: 'Rubik', sans-serif;
-  color: rgb(147, 173, 184);
-  font-weight: bold;
-  letter-spacing: 1px;
-  font-size: 30px;
-}
- .list-name {
-  width: 210px;
-}
-.edit-btn i {
-  font-size: 30px; 
-}
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 30px;
+  }
+  .list-name {
+    width: 210px;
+  }
+  .edit-btn i {
+    font-size: 30px; 
+  }
 }
