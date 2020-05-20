@@ -65,6 +65,8 @@ router.post('/create', (req, res) => {
 router.put('/:id', (req, res) => {
   const id = req.params.id
   req.body.amount = Number(req.body.amount)
+  Record.find({ categoryName: req.body.category })
+    .then(record => { req.body.icon = record[0].icon })
   return Record.findById(id)
     .then(record => {
       record = Object.assign(record, req.body)
