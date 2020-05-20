@@ -15,4 +15,4 @@ app.use((bodyParser.urlencoded({ extended: true })))
 app.use(methodOverride('_method'))
 app.use(route)
 
-app.listen(PORT, () => console.log(`Expense-tracker is running on http://localhost:${port}`))
+app.listen(PORT, () => console.log(`Expense-tracker is running on http://localhost:${PORT}`))
