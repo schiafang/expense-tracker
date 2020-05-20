@@ -9,6 +9,7 @@ router.get('/create', (req, res) => {
     .then(record => res.render('new', { record }))
     .catch(error => console.log('route error!'))
 })
+
 router.get('/category', (req, res) => {
   const filter = req.query.filter
   if (filter.length === 0) { return res.redirect('/') }
@@ -27,7 +28,14 @@ router.get('/category', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  res.render('edit')
+  const id = req.params.id
+  Record.findById(id)
+    .lean()
+    .then(record => {
+      console.log(record)
+      res.render('edit', { record })
+    })
+    .catch(error => console.log('route error!'))
 })
 
 // -----Create----- //
@@ -47,9 +55,10 @@ router.post('/create', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log('error!'))
 })
+
 // -----Update----- //
 router.put('/:id', (req, res) => {
-  res.render('edit')
+
 })
 
 // -----Delete----- //

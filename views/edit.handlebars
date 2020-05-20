@@ -6,19 +6,22 @@
   </div>
 </nav>
 <div class="container create-form">
-  <form action=" /record/create" method="POST">
+  <form action="/record/create" method="POST">
     <div class="form-group">
       <label for="expense"></label>
-      <input type="text" class="form-control" id="expense" name="name" placeholder="支出項目" required>
+      <input type="text" class="form-control" id="expense" name="name" autocomplete="off" maxlength="12"
+        value="{{record.name}}" required>
+      </select>
     </div>
     <div class="form-group">
       <label for="date"></label>
-      <input type="date" class="form-control" id="date" name="date" placeholder="日期" required>
+      <input type="date" class="form-control" id="date" name="date" placeholder="日期" value="{{record.date}}"
+        autocomplete="on" required>
     </div>
-    <div class="form-group col-md-4">
-      <label for="category"></label>
-      <select id="category" class="form-control" name="category" required>
-        <option>支出類別</option>
+    <div class="form-group">
+      <label for="new-category"></label>
+      <select id="new-category" class="form-control" name="category" required>
+        <option>{{record.category}}</option>
         <option>餐飲食品</option>
         <option>交通出行</option>
         <option>休閒娛樂</option>
@@ -28,11 +31,12 @@
     </div>
     <div class="form-group">
       <label for="amount"></label>
-      <input type="text" class="form-control" id="amount" name="amount" placeholder="金額" required>
+      <input type="text" class="form-control" id="amount" name="amount" placeholder="金額" value="{{record.amount}}"
+        required>
     </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-info">ENTER</button>
+    <div class="form-group row justify-content-center">
+      <button type="submit" class="btn mt-3" style="background-color: transparent;"><i class="fas fa-pencil-alt fa-2x"
+          style="color: rgb(203, 210, 72);"></i></button>
     </div>
   </form>
-
 </div>
