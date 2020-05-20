@@ -1,1 +1,1 @@
-web:node index.js && npm run seed
+web:node index.js && node models/seeds/categorySeeder.js && node models/seeds/recordSeeder.js
