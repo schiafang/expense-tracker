@@ -19,7 +19,7 @@ db.once('open', () => {
       icon: '<i class="fas fa-grin-beam"></i>'
     },
     {
-      categoryName: '餐飲飲食',
+      categoryName: '餐飲食品',
       icon: '<i class="fas fa-utensils"></i>'
     },
     {

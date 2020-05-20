@@ -2,7 +2,8 @@
   border: 0.5px solid pink;
 } */
 body {
-  background: linear-gradient(to right,#ECE9E6,#FFFFFF);
+  /* background: linear-gradient(to left,#ECE9E6,#FFFFFF); */
+  background: linear-gradient(to left,rgb(216,213,210),rgb(245,245,245));
 }
 .total-amount {
   font-size: 100px;
@@ -12,9 +13,50 @@ body {
   width: 400px;
   height: 430px;
   background-color: rgb(60, 60, 60);
+  border-radius: 10px;
+  box-shadow: 0px 0px 25px rgb(82, 80, 78);
+  margin-top: 50px;
 }
+.category-icon {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  width: 65px;
+}
+.category-icon i {
+ font-size: 50px;
+ color: rgb(79, 187, 227);
+} 
+.edit-btn {
+  border: none;
+  background-color: transparent;
+}
+.edit-btn i {
+  font-size: 25px; 
+  color:rgb(118, 118, 118);
+}
+
+
 @media (min-width: 767.98px) {
   .record-list {
     width: 700px;
   }
+}
+
+::-webkit-datetime-edit { background-color:blue; padding: 1px;}  /*控制編輯區域的*/
+::-webkit-datetime-edit-fields-wrapper { background-color: rgb(212, 208, 208); }    /*控制年月日這個區域的*/
+::-webkit-datetime-edit-text { color: rgb(224, 220, 220); padding: 0 .5em; }  /*這是控制年月日之間的斜線或短橫線的*/
+::-webkit-datetime-edit-year-field { color: #333; }    /*控制年文字, 如2013四個字母佔據的那片地方*/   
+::-webkit-datetime-edit-month-field { color: #333; }    /*控制月份*/
+::-webkit-datetime-edit-day-field { color: rgb(54, 46, 46); }    /*控制具體日子*/
+::-webkit-inner-spin-button { visibility: hidden; }    /*這是控制上下小箭頭的*/
+::-webkit-calendar-picker-indicator {      /*這是控制下拉小箭頭的*/
+border: 1px solid #ccc;
+border-radius: 2px;
+box-shadow: inset 0 1px #fff, 0 1px #eee;
+background-color: #eee;
+background-image: -webkit-linear-gradient(top, #f0f0f0, #e6e6e6);
+color: #666;
+}
+::-webkit-clear-button {    /*控制清除按鈕*/
 }

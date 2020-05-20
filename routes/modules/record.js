@@ -6,8 +6,28 @@ const Record = require('../../models/record')
 router.get('/create', (req, res) => {
   Record.find()
     .lean()
-    .then(record => res.render('create', { record }))
+    .then(record => res.render('new', { record }))
     .catch(error => console.log('route error!'))
+})
+router.get('/category', (req, res) => {
+  const filter = req.query.filter
+  if (filter.length === 0) { return res.redirect('/') }
+  Record.find({ category: `${req.query.filter}` })
+    .lean()
+    .then(record => {
+      let totalAmount = 0
+      const promise = []
+      for (let i = 0; i < record.length; i++) {
+        promise.push(record[i])
+        totalAmount += Number(promise[i].amount)
+      }
+      res.render('index', { record, totalAmount })
+    })
+    .catch(error => console.log('route error!'))
+})
+
+router.get('/:id', (req, res) => {
+  res.render('edit')
 })
 
 // -----Create----- //
@@ -28,6 +48,9 @@ router.post('/create', (req, res) => {
     .catch(error => console.log('error!'))
 })
 // -----Update----- //
+router.put('/:id', (req, res) => {
+  res.render('edit')
+})
 
 // -----Delete----- //
 router.delete('/:id', (req, res) => {

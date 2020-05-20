@@ -1,54 +1,63 @@
+<nav class="navbar navbar-light bg-none">
+  <div class="container-fluid justify-content-center">
+    <div class="row">
+      <a class="mt-3 navbar-brand" href="/record/create"><img src="https://i.imgur.com/SlZ1LtR.png" alt=""
+          width="120px"></a>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
   <div class="row  justify-content-center">
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Category
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">餐飲食品</a>
-        <a class="dropdown-item" href="#">休閒娛樂</a>
-        <a class="dropdown-item" href="#">交通出行</a>
-        <a class="dropdown-item" href="#">家居物業</a>
-        <a class="dropdown-item" href="#">其他</a>
+    <form name="categoryform" method="GET" action="/record/category">
+      <select id="categoryform" name="filter" onchange="submit()">
+        <option>Category</option>
+        <option value="">全部</option>
+        <option value="餐飲食品">餐飲食品</option>
+        <option value="休閒娛樂">休閒娛樂</option>
+        <option value="家居物業">家居物業</option>
+        <option value="交通出行">交通出行</option>
+        <option value="其他">其他</option>
+      </select>
+    </form>
+
+    <div class="container total-amount">
+      <div class="row justify-content-center">
+        <div class="total-amount">{{totalAmount}}</div>
       </div>
     </div>
-  </div>
-</div>
-<div class="container total-amount">
-  <div class="row justify-content-center">
-    <div class="total-amount">{{totalAmount}}</div>
-  </div>
-</div>
-<div class="container mb-5 record-list">
-  <div class="row">
-    {{#each record}}
-    <div class="col-2">{{{this.icon}}}</div>
-    <div class="col-8">
-      <li class="list-group-item list-group-item-white">
-        <div class="row justify-content-between align-items-center">
-          <div class="">
-            <h5>{{this.name}}</h5>
-            <h6>{{this.date}}</h6>
-          </div class="amount">
-          <h5> {{this.amount}} </h5>
+    <div class="container mb-5 record-list">
+      <div class="row">
+        {{#each record}}
+        <div class="col-2"></div>
+        <div class="col-8">
+          <li class="list-group-item" style="background-color:transparent;">
+            <div class="row justify-content-between align-items-center">
+              <div class="row">
+                <div class="ml-4 category-icon">{{{this.icon}}}</div>
+                <div>
+                  <h5 class="ml-2">{{this.name}}</h5>
+                  <h6 class="ml-2" style="color: gray;">{{this.date}}</h6>
+                </div>
+              </div class="amount">
+              <h5 class="mr-2"> {{this.amount}} </h5>
+            </div>
+          </li>
         </div>
-      </li>
-    </div>
-    <div class="col-2" style="display: flex; align-items:center;">
-      <div>
-        <form action="/record/?_method=DELETE" method="POST">
-          <button type="submit">
-            <i class="fas fa-pen-square" style="font-size: 20px; color:rgb(185, 184, 184)"></i>
-          </button>
-        </form>
-        <form action="/record/{{this._id}}?_method=DELETE" method="POST">
-          <button type="submit">
-            <i class="ml-2 fas fa-minus-square" style="font-size: 20px; color:rgb(118, 118, 118)"></i>
-          </button>
-        </form>
+        <div class="col-2" style="display: flex;">
+          <div class="row align-items-center">
+            <form action="/record/{{this._id}}" method="GET">
+              <button type="submit" class="edit-btn" style="display: inline;">
+                <i class="fas fa-pen-square"></i>
+              </button>
+            </form>
+            <form action="/record/{{this._id}}?_method=DELETE" method="POST">
+              <button type="submit" class="edit-btn">
+                <i class="fas fa-minus-square"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        {{/each}}
       </div>
     </div>
-    {{/each}}
-  </div>
-</div>
