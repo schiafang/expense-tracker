@@ -1,6 +1,3 @@
-/* * {
-  border: 0.5px solid pink;
-} */
 body {
   background: linear-gradient(to left,rgb(216,213,210),rgb(245,245,245));
 }
@@ -8,17 +5,16 @@ body {
 .total-amount {
   margin-top: -10px;
   font-size: 100px;
-  color: rgb(232, 156, 15);
   font-weight: 800;
   font-family: 'Rubik', sans-serif;
   font-style: italic;
 }
 .category-icon {
-  opacity: 90%;
   display: flex;
   justify-content: center;
   width: 50px; 
   margin-right: 10px;
+  margin-left: 30px;
 }
 .category-icon i {
   margin-top: 10px;
@@ -48,6 +44,8 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: rgb(66,66,66);
+  letter-spacing: 1px;
 }
 .edit-btn {
   border: none;
@@ -60,11 +58,23 @@ body {
 .edit-btn .fa-pen-square:hover {
   cursor: pointer;
     color:rgb(120, 120, 120);
-
 }
 .edit-btn .fa-minus-square:hover {
   cursor: pointer;
   color:rgb(165, 55, 55);
+}
+.list-group-item {
+  background-color: rgb(80, 80, 80,0.1);
+  margin-top: 2px;
+  border: none;
+}
+.list-group-item:hover {
+  background-color: rgb(80, 80, 80,0.2);
+}
+.record-list {
+  overflow: auto;
+  height: 450px;
+  margin-top: 10px;
 }
 
 /* New and edit page */
@@ -91,7 +101,6 @@ body {
 
 ::-webkit-inner-spin-button { display: none; }   
 ::-webkit-datetime-edit-text {  padding: 5px; } 
-
 
 option{ 
 background-color:#fff; 
@@ -121,5 +130,4 @@ option:not(:checked) {
 .edit-btn i {
   font-size: 30px; 
 }
-
 }

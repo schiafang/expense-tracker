@@ -9,7 +9,11 @@
 <div class="container" style="display: flex; flex-direction:column; align-items:center;">
   <div class="container total-amount">
     <div class="row justify-content-center">
-      <div class="total-amount">{{totalAmount}}</div>
+      <div class="total-amount"
+        style="{{#if aLittleAmount}}color:#FFC300 
+;{{/if}}{{#if lessAmount}}color:#EB961C;{{/if}}{{#if mediumAmount}}color:#DB6D29;{{/if}}{{#if tooMuchAmount}}color:#B03118;{{/if}}">
+        {{totalAmount}}
+      </div>
     </div>
   </div>
   <div class="filter-category mb-4">
@@ -30,10 +34,10 @@
       {{#each record}}
       <div class="col-2"></div>
       <div class="col-8">
-        <li class="list-group-item" style="background-color:transparent;">
+        <li class="list-group-item">
           <div class="row justify-content-between align-items-center">
             <div class="row">
-              <div class="ml-4 category-icon">{{{this.icon}}}</div>
+              <div class="category-icon">{{{this.icon}}}</div>
               <div>
                 <h5 class="ml-2 list-name">{{this.name}}</h5>
                 <h6 class="ml-2" style="font-style:italic; color: gray;">{{this.date}}</h6>
@@ -60,3 +64,10 @@
       {{/each}}
     </div>
   </div>
+  <footer>
+    <div class="footer pb-5">
+      <div class="row">
+        <a href="https://github.com/schiafang"><img src="https://i.imgur.com/frLUCiN.png" style="opacity: 80%;"></a>
+      </div>
+    </div>
+  </footer>
