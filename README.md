@@ -5,10 +5,19 @@
 
 
 ## **Features**
-- [x] record daily expense
-- [x] can edit or delete item
-- [x] can be filtered by category
-- [x] total amount color will change when spend money to specific range
+
+* 在首頁時點擊 LOGO 新增一筆支出
+* 新增支出表格中點擊輸入框輸入支出項目
+* 支出項目也可以從下拉建議選項中快速選取
+* 日期預設為新增支出當天日期
+* 在編輯與新增支出頁面中點擊 LOGO 返回首頁
+* 可單項刪除或編輯支出內容
+* 總金額會隨著支出增加到一定範圍改變不同顏色
+
+
+<br></br>
+
+![create-form](/public/image/form.png)
 
 ## Prerequisites
 [Node.js](https://nodejs.org/en/) (v10.15.0)
@@ -22,9 +31,9 @@
 
 ## Start
 
-### [Expense-tracker](https://secret-brushlands-56466.herokuapp.com/)
+### ➔ [Expense-tracker](https://secret-brushlands-56466.herokuapp.com/)
 
-## or Installation to Local computer
+## or install to Local computer
 
 [Download](https://github.com/schiafang/expense-tracker/archive/master.zip) or clone repository to your local computer.
 ```
