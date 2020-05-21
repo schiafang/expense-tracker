@@ -4,21 +4,26 @@ body {
 /* Index page */
 .total-amount {
   margin-top: -10px;
-  font-size: 100px;
+  font-size: 80px;
   font-weight: 800;
   font-family: 'Rubik', sans-serif;
   font-style: italic;
 }
+#filter-category {
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 3px 4px 8px rgb(189, 189, 189);
+  width: 250px;
+}
 .category-icon {
   display: flex;
   justify-content: center;
-  width: 50px; 
-  margin-right: 10px;
-  margin-left: 30px;
+  width: 15px; 
+  margin-right: 25px;
+  margin-left: -25px;
 }
 .category-icon i {
   margin-top: 10px;
-  font-size: 40px;
+  font-size: 25px;
 } 
 .category-icon .fa-home { color: rgb(208, 177, 21); }
 .category-icon .fa-shuttle-van { color: rgb(55, 126, 152);}
@@ -26,20 +31,13 @@ body {
 .category-icon .fa-utensils { color: rgb(131, 64, 126);}
 .category-icon .fa-pen {color: rgb(117, 123, 125); }
 
-#filter-category {
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 3px 4px 8px rgb(189, 189, 189);
-  width: 250px;
-}
-.list-amount {
-  font-family: 'Rubik', sans-serif;
-  color: rgb(94, 158, 185,0.8);
-  font-weight: bold;
-  letter-spacing: 1px;
-  font-size: 20px;
+.list-group-item {
+  margin-top: 2px;
+  border: none;
 }
 .list-name {
-  width: 115px;
+  font-size: 16px;
+  width: 180px;
   margin-top: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -47,12 +45,34 @@ body {
   color: rgb(66,66,66);
   letter-spacing: 1px;
 }
+.list-date {
+font-size: 12px;
+font-style: italic;
+color: gray;
+}
+.list-amount {
+  width:180px;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-family: 'Rubik', sans-serif;
+  color: rgb(94, 158, 185,0.8);
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 20px;
+  text-align: end;
+}
+.edit-btn-group {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  margin-left: -10px;
+}
 .edit-btn {
   border: none;
   background-color: transparent;
 }
 .edit-btn i {
-  font-size: 25px; 
+  font-size: 20px; 
   color:rgb(120, 120, 120, 0.1);
 }
 .edit-btn .fa-pen-square:hover {
@@ -65,10 +85,6 @@ body {
   color:rgb(165, 55, 55);
   font-size: 30px;
 }
-.list-group-item {
-  margin-top: 2px;
-  border: none;
-}
 .record-list {
   overflow: auto;
   height: 450px;
@@ -77,12 +93,12 @@ body {
 
 /* New and edit page */
 .create-form {
-  width: 400px;
+  width: 300px;
   height: 430px;
   background-color: rgb(60, 60, 60);
   border-radius: 10px;
   box-shadow: 0px 0px 25px rgb(82, 80, 78);
-  margin-top: 50px;
+  margin-top: 20px;
   padding-top: 20px;
   display: flex;
   justify-content: center;
@@ -100,20 +116,59 @@ body {
 ::-webkit-inner-spin-button { display: none; }   
 ::-webkit-datetime-edit-text {  padding: 5px; } 
 
-@media (min-width: 767.98px) {
+
+@media (min-width: 576px) {
+  .create-form {
+    width: 400px;
+    margin-top: 50px;
+    padding-top: 20px;
+  }
+  .form-control {
+    width: 205px;
+  }
+  .total-amount {
+    font-size: 100px;
+  }
+  .category-icon {
+    width: 50px; 
+    margin-right: 10px;
+    margin-left: 30px;
+  }
+  .category-icon i {
+    margin-top: 10px;
+    font-size: 40px;
+  } 
+  .list-group-item {
+    margin-top: 2px;
+    border: none;
+  }
+  .list-name {
+    width: 115px;
+    margin-top: 5px;
+  }
+  .list-amount {
+    margin: 0px;
+    width: auto;
+    text-align: start;
+    font-size: 25px;
+  }
+  .edit-btn-group {
+    display: flex;
+    flex-direction: row;
+  }
+  .edit-btn i {
+    font-size: 25px; 
+  }
+}
+
+@media (min-width: 768px) {
   .record-list {
     width: 700px;
   }
   .category-icon i {
-    font-size: 50px;
+    font-size: 45px;
     margin-top: 5px;
   } 
-  .list-amount {
-    font-family: 'Rubik', sans-serif;
-    font-weight: bold;
-    letter-spacing: 1px;
-    font-size: 30px;
-  }
   .list-name {
     width: 210px;
   }
