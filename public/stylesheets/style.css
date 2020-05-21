@@ -116,7 +116,6 @@ color: gray;
 ::-webkit-inner-spin-button { display: none; }   
 ::-webkit-datetime-edit-text {  padding: 5px; } 
 
-
 @media (min-width: 576px) {
   .create-form {
     width: 400px;
