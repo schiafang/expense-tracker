@@ -8,7 +8,8 @@ const RecordSchema = new Schema({
   amount: Number,
   totalAmount: String,
   categoryName: String,
-  icon: String
+  icon: String,
+  merchant: String
 })
 
 module.exports = mongoose.model('Record', RecordSchema)

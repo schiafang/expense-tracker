@@ -8,7 +8,6 @@
 <div class="container create-form">
   <form action="/record/create" method="POST">
     <div class="form-group">
-      <label for="expense"></label>
       <input type="text" class="form-control" id="expense" name="name" placeholder="支出項目" autocomplete="off"
         maxlength="12" list="new-item" required>
       <datalist id="new-item">
@@ -21,12 +20,24 @@
       </datalist>
     </div>
     <div class="form-group">
-      <label for="date"></label>
       <input type="date" class="form-control new-date" id="date" name="date" placeholder="日期" value="2020-05-20"
         autocomplete="on" required>
     </div>
     <div class="form-group">
-      <label for="new-category"></label>
+      <input type="text" class="form-control" id="merchant" name="merchant" placeholder="商家" autocomplete="off"
+        maxlength="12" list="merchant-list">
+      <datalist id="merchant-list">
+        <option value="7-11">
+        <option value="全家便利商店">
+        <option value="麥當勞">
+        <option value="全聯">
+        <option value="中油">
+        <option value="博客來">
+        <option value="屈臣氏">
+        <option value="其他">
+      </datalist>
+    </div>
+    <div class="form-group">
       <select id="new-category" class="form-control" name="category" required>
         <option>支出類別</option>
         <option>餐飲食品</option>
@@ -37,7 +48,6 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="amount"></label>
       <input type="text" class="form-control" id="amount" name="amount" placeholder="金額" required>
     </div>
     <div class="form-group row justify-content-center">
