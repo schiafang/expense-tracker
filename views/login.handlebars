@@ -7,17 +7,18 @@
       <div class="form-group">
         <div class="input-field email-field">
           <i class="ml-2 mr-1 far fa-envelope"></i>
-          <input type="email" placeholder="Email" onfocus="addEmailActive()" onblur="removeEmailActive()" required>
+          <input type="email" name="email" placeholder="Email" onfocus="addEmailActive()" onblur="removeEmailActive()"
+            required>
         </div>
       </div>
       <div class="form-group">
         <div class="input-field password-field">
           <i class="ml-2 mr-1 fa fa-key" aria-hidden="true"></i>
-          <input type="password" placeholder="Password" onfocus="addPasswordActive()" onblur="removePasswordActive()"
-            required>
+          <input type="password" name="password" placeholder="Password" onfocus="addPasswordActive()"
+            onblur="removePasswordActive()" required>
         </div>
       </div>
-      <button class="btn">Log In</button>
+      <button type="submit" class="btn">Log In</button>
     </form>
     <p class="mt-4">- or log in with-</p>
     <a class="mb-4" href="/auth/facebook"><img src="/image/f_logo.png" alt="facebook" width="40px"></a>

@@ -9,7 +9,13 @@ const RecordSchema = new Schema({
   totalAmount: String,
   categoryName: String,
   icon: String,
-  merchant: String
+  merchant: String,
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
+  }
 })
 
 module.exports = mongoose.model('Record', RecordSchema)

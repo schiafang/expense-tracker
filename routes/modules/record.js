@@ -4,16 +4,14 @@ const Record = require('../../models/record')
 
 // -----Read----- //
 router.get('/create', (req, res) => {
-  Record.find()
-    .lean()
-    .then(record => res.render('new', { record }))
-    .catch(error => console.log('route error!'))
+  res.render('new')
 })
 
 router.get('/category', (req, res) => {
   const filter = req.query.filter
+  const userId = req.user._id
   if (filter.length === 0) { return res.redirect('/') }
-  Record.find({ category: `${req.query.filter}` })
+  Record.find({ category: `${req.query.filter}`, userId })
     .lean()
     .then(record => {
       let totalAmount = 0
@@ -46,6 +44,7 @@ router.get('/:id', (req, res) => {
 // -----Create----- //
 router.post('/create', (req, res) => {
   const body = req.body
+  body.userId = req.user._id
   Record.find({ categoryName: { $regex: '' } })
     .lean()
     .then(record => {
@@ -53,6 +52,7 @@ router.post('/create', (req, res) => {
       for (let i = 0; i < record.length; i++) {
         promise.push(record[i])
         if (body.category === '支出類別') { body.category = '其他' }
+        if (body.merchant === '') { body.merchant = '其他' }
         if (body.category === promise[i].categoryName) { body.icon = promise[i].icon }
       }
       return Record.create(body)
@@ -63,11 +63,12 @@ router.post('/create', (req, res) => {
 
 // -----Update----- //
 router.put('/:id', (req, res) => {
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   req.body.amount = Number(req.body.amount)
   Record.find({ categoryName: req.body.category })
     .then(record => { req.body.icon = record[0].icon })
-  return Record.findById(id)
+  return Record.findOne({ _id, userId })
     .then(record => {
       record = Object.assign(record, req.body)
       return record.save()
@@ -78,8 +79,9 @@ router.put('/:id', (req, res) => {
 
 // -----Delete----- //
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const _id = req.params.id
+  const userId = req.user._id
+  return Record.findOne({ _id, userId })
     .then(record => {
       record.remove()
       res.redirect('/')

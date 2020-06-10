@@ -4,7 +4,8 @@ const Record = require('../../models/record')
 
 router.get('/', (req, res) => {
   const filter = '全部支出'
-  Record.find({ name: { $regex: '' } })
+  const userId = req.user._id
+  Record.find({ name: { $regex: '' }, userId })
     .lean()
     .then(record => {
       let totalAmount = 0
