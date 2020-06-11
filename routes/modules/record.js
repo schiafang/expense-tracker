@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
-const { numberFormat } = require('../../public/javascripts/function')
+const { dateFormat, getTotalAmount } = require('../../public/javascripts/function')
 
 
 // -----Read----- //
@@ -16,34 +16,40 @@ router.get('/category', (req, res) => {
   Record.find({ category: `${req.query.filter}`, userId })
     .lean()
     .then(record => {
-      let totalAmount = 0
-      const promise = []
-      for (let i = 0; i < record.length; i++) {
-        promise.push(record[i])
-        totalAmount += Number(promise[i].amount)
-      }
-      let totalAmountFormat = numberFormat(totalAmount)
-
-      res.render('index', { record, totalAmountFormat, filter })
+      const totalAmountFormat = getTotalAmount(record)
+      const months = []
+      record.forEach(item => {
+        const dateResult = new Date(item.date)
+        const monthFormat = dateFormat(dateResult)
+        if (months.includes(monthFormat)) return
+        months.push(monthFormat)
+      })
+      res.render('index', { record, totalAmountFormat, filter, months })
     })
     .catch(error => console.log('error!'))
 })
 
 router.get('/months', (req, res) => {
   const userId = req.user._id
-  console.log(req.query)
   const month = req.query.months
-  Record.find({ date: { $regex: '2020-06' } })
-    // Record.find()
-    .lean()
+  const months = []
+  Record.find({ userId }) // 搜尋全部資料得到分類
     .then(record => {
       console.log(record)
-      res.redirect('/')
+      record.forEach(item => {
+        const dateResult = new Date(item.date)
+        const monthFormat = dateFormat(dateResult)
+        if (months.includes(monthFormat)) return
+        months.push(monthFormat)
+      })
     })
-
-
-
-
+  Record.find({ date: { $regex: month }, userId })  // 渲染選擇的月份
+    .lean()
+    .then(record => {
+      const totalAmountFormat = getTotalAmount(record)
+      res.render('index', { record, totalAmountFormat, months })
+    })
+    .catch(error => console.log('error!'))
 })
 
 

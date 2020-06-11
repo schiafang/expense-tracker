@@ -9,7 +9,6 @@
   <sapn class="total-amount" id="total-amount">
     {{totalAmountFormat}}
   </sapn>
-
   <!-- 分類 -->
   <div class=" filter row">
     <!-- 分類: 月份 -->
@@ -20,7 +19,6 @@
           {{#each months}}
           <option value="{{this}}">{{this}}</option>
           {{/each}}
-
         </select>
       </form>
     </div>
@@ -38,9 +36,7 @@
         </select>
       </form>
     </div>
-
   </div>
-
   <!-- 支出清單 -->
   <div class="container mb-5 record-list">
     <div class="row">
@@ -73,7 +69,6 @@
       {{/each}}
     </div>
   </div>
-
   <!-- footer -->
   <footer>
     <div class="footer pb-5">
@@ -83,11 +78,9 @@
 </div>
 
 <script>
-
   const totalAmountText = document.getElementById('total-amount').innerText
   const totalAmountDOM = document.getElementById('total-amount')
   const totalAmount = formatToNumber(totalAmountText)
-
   function formatToNumber(totalAmountText) {
     totalAmountText = totalAmountText.split(',').join('')
     return Number(totalAmountText)
@@ -97,5 +90,4 @@
   if (totalAmount > 5000) { totalAmountDOM.style.color = '#EB961C' }
   if (totalAmount > 10000) { totalAmountDOM.style.color = '#DB6D29' }
   if (totalAmount > 50000) { totalAmountDOM.style.color = '#B03118' }
-
 </script>
