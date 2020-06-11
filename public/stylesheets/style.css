@@ -1,7 +1,14 @@
 body {
   background: linear-gradient(to left,rgb(216,213,210),rgb(245,245,245));
 }
+a {
+  text-decoration: none;
+}
 /* Index page */
+.navbar {
+  display: flex;
+  justify-content: center;
+}
 .total-amount {
   margin: -10px 0px -10px 0px;
   font-size: 80px;
@@ -18,8 +25,7 @@ body {
   display: flex;
   justify-content: center;
   width: 15px; 
-  margin-right: 25px;
-  margin-left: -25px;
+  margin: 10px 25px 0px -25px;
 }
 .category-icon i {
   margin-top: 10px;
@@ -61,28 +67,17 @@ color: gray;
   font-size: 20px;
   text-align: end;
 }
-.edit-btn-group {
-  display: flex;
-  flex-direction: column;
-  padding-top: 10px;
-  margin-left: -10px;
-}
-.edit-btn {
+.delete-btn {
   border: none;
   background-color: transparent;
-}
-.edit-btn i {
   font-size: 20px; 
-  color:rgb(120, 120, 120, 0.1);
+  color:rgb(120, 120, 120, .1);
+  position: absolute;
+  margin-left: -30px;
 }
-.edit-btn .fa-pen-square:hover {
+.delete-btn:hover {
   cursor: pointer;
-  color:rgb(120, 120, 120);
-  font-size: 30px;
-}
-.edit-btn .fa-minus-square:hover {
-  cursor: pointer;
-  color:rgb(165, 55, 55);
+  color:rgb(163, 27, 27);
   font-size: 30px;
 }
 .record-list {
@@ -91,7 +86,7 @@ color: gray;
   height: 450px;
   margin-top: 10px;
 }
-.index-content {
+.index-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -140,8 +135,8 @@ color: gray;
     margin-left: 30px;
   }
   .category-icon i {
-    margin-top: 10px;
     font-size: 40px;
+    margin-top: 10px;
   } 
   .list-group-item {
     margin-top: 2px;
@@ -161,9 +156,6 @@ color: gray;
     display: flex;
     flex-direction: row;
   }
-  .edit-btn i {
-    font-size: 25px; 
-  }
 }
 
 @media (min-width: 768px) {
@@ -176,9 +168,6 @@ color: gray;
   } 
   .list-name {
     width: 210px;
-  }
-  .edit-btn i {
-    font-size: 30px; 
   }
 }
 

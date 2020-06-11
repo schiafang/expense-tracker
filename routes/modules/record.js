@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
+const { numberFormat } = require('../../public/javascripts/function')
+
 
 // -----Read----- //
 router.get('/create', (req, res) => {
@@ -20,25 +22,31 @@ router.get('/category', (req, res) => {
         promise.push(record[i])
         totalAmount += Number(promise[i].amount)
       }
-      let aLittleAmount = false
-      let lessAmount = false
-      let mediumAmount = false
-      let tooMuchAmount = false
-      if (totalAmount > 1000) { aLittleAmount = true }
-      if (totalAmount > 5000) { lessAmount = true }
-      if (totalAmount > 10000) { mediumAmount = true }
-      if (totalAmount > 50000) { tooMuchAmount = true }
-      res.render('index', { record, totalAmount, filter, aLittleAmount, lessAmount, mediumAmount, tooMuchAmount })
+      let totalAmountFormat = numberFormat(totalAmount)
+
+      res.render('index', { record, totalAmountFormat, filter })
     })
-    .catch(error => console.log('route error!'))
+    .catch(error => console.log('error!'))
 })
+
+router.get('/months', (req, res) => {
+
+  console.log(req.query)
+
+
+
+
+  res.redirect('/')
+
+})
+
 
 router.get('/:id', (req, res) => {
   const id = req.params.id
   Record.findById(id)
     .lean()
     .then(record => { res.render('edit', { record }) })
-    .catch(error => console.log('route error!'))
+    .catch(error => console.log('error!'))
 })
 
 // -----Create----- //
