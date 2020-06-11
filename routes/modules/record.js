@@ -30,13 +30,19 @@ router.get('/category', (req, res) => {
 })
 
 router.get('/months', (req, res) => {
-
+  const userId = req.user._id
   console.log(req.query)
+  const month = req.query.months
+  Record.find({ date: { $regex: '2020-06' } })
+    // Record.find()
+    .lean()
+    .then(record => {
+      console.log(record)
+      res.redirect('/')
+    })
 
 
 
-
-  res.redirect('/')
 
 })
 
@@ -53,7 +59,8 @@ router.get('/:id', (req, res) => {
 router.post('/create', (req, res) => {
   const body = req.body
   body.userId = req.user._id
-  Record.find({ categoryName: { $regex: '' } })
+  // Record.find({ categoryName: { $regex: '' } }) //???
+  Record.find()
     .lean()
     .then(record => {
       promise = []

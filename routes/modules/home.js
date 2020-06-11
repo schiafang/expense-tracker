@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
-const { numberFormat } = require('../../public/javascripts/function')
+const { numberFormat, dateFormat } = require('../../public/javascripts/function')
 
 router.get('/', (req, res) => {
   const filter = '全部支出'
@@ -19,12 +19,11 @@ router.get('/', (req, res) => {
       }
       let totalAmountFormat = numberFormat(totalAmount)
 
-
       // months filter
       const months = []
       record.forEach(item => {
         const dateResult = new Date(item.date)
-        const monthFormat = `${dateResult.getFullYear()}-${dateResult.getMonth() + 1}`
+        const monthFormat = dateFormat(dateResult)
         if (months.includes(monthFormat)) return
         months.push(monthFormat)
       })
