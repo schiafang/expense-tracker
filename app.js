@@ -5,11 +5,12 @@ const methodOverride = require('method-override')
 const route = require('./routes/index')
 const session = require('express-session')
 const usePassport = require('./config/passport')
+if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
 
 require('./config/mongoose')
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -18,14 +19,14 @@ app.use((bodyParser.urlencoded({ extended: true })))
 app.use(methodOverride('_method'))
 
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
 usePassport(app)
 app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.isAuthenticated() //回傳的布林值給 res 用
-  res.locals.user = req.user //將使用者資訊給 res
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
   next()
 })
 app.use(route)

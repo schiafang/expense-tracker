@@ -39,7 +39,12 @@
   </div>
   <!-- 支出清單 -->
   <div class="container mb-5 record-list">
-    <div class="row">
+    <div class="row justify-content-center">
+      {{#if noExpense}}
+      <div class="no-expense">Hello, {{username}}
+        <p> Click the piggy to add expense.</p>
+      </div>
+      {{/if}}
       {{#each record}}
       <div class="col-1">
       </div>

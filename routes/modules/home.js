@@ -6,6 +6,7 @@ const { dateFormat, getTotalAmount } = require('../../public/javascripts/functio
 router.get('/', (req, res) => {
   const filter = '全部支出'
   const userId = req.user._id
+  const username = req.user.username
   Record.find({ name: { $regex: '' }, userId })
     .lean()
     .sort({ _id: 'desc' })
@@ -19,8 +20,10 @@ router.get('/', (req, res) => {
         if (months.includes(monthFormat)) return
         months.push(monthFormat)
       })
+      let noExpense = false
+      if (record.length === 0) noExpense = true
 
-      res.render('index', { record, totalAmountFormat, filter, months })
+      res.render('index', { record, totalAmountFormat, filter, months, noExpense, username })
     })
     .catch(error => console.log('route error!'))
 })

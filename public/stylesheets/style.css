@@ -9,6 +9,11 @@ a {
   display: flex;
   justify-content: center;
 }
+.no-expense {
+  font-size: 25px;
+  margin-top: 100px;
+  color: gray;
+}
 .total-amount {
   margin: -10px 0px -10px 0px;
   font-size: 80px;
