@@ -8,13 +8,13 @@ module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+  passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
     User.findOne({ email })
       .then(user => {
-        if (!user) done(null, false, { message: '使用者尚未註冊' })
+        if (!user) done(null, false, req.flash('alertMsg', 'Email is not registered.'))
         return bcrypt.compare(password, user.password)
           .then(isMatch => {
-            if (!isMatch) done(null, false, { message: '資料錯誤' })
+            if (!isMatch) done(null, false, req.flash('alertMsg', 'Password is incorrect.'))
             if (isMatch) done(null, user)
           })
       })
