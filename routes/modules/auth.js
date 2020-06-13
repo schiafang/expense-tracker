@@ -7,7 +7,17 @@ router.get('/facebook', passport.authenticate('facebook', { scope: ['email', 'pu
 router.get('/facebook/callback',
   passport.authenticate('facebook', {
     successRedirect: '/',
-    failureRedirect: '/users/register'
-  }))
+    failureRedirect: '/users/login'
+  })
+)
+
+router.get('/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'email'] }))
+
+router.get('/google/callback',
+  passport.authenticate('google', {
+    successRedirect: '/',
+    failureRedirect: '/users/login'
+  })
+)
 
 module.exports = router
