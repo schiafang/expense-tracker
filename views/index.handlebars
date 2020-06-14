@@ -20,7 +20,7 @@
     <div class="filter-months">
       <form name="filter-months" method="GET" action="/record/months">
         <select class="form-control" id="filter-month" name="months" onchange="submit()">
-          <option value="">月份</option>
+          <option value="">{{#if selectMonth}}{{selectMonth}}{{/if}}月份</option>
           {{#each months}}
           <option value="{{this}}">{{this}}</option>
           {{/each}}
