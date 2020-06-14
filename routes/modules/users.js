@@ -29,7 +29,7 @@ router.post('/login', passport.authenticate('local', {
 
 router.post('/register', (req, res) => {
   const errorMsg = []
-  const { username, email, password } = req.body
+  const { username, email, password, confirmPassword } = req.body
   if (errorMsg.length !== 0) {
     console.log(errorMsg)
     return res.render('register', { errorMsg, username, email, password })
@@ -38,6 +38,10 @@ router.post('/register', (req, res) => {
     .then(user => {
       if (user) {
         errorMsg.push({ message: '此電子信箱已被註冊' })
+        return res.render('register', { errorMsg, username, email, password, userStyle: true })
+      }
+      if (password !== confirmPassword) {
+        errorMsg.push({ message: '密碼與確認密碼必須相同' })
         return res.render('register', { errorMsg, username, email, password, userStyle: true })
       }
       return bcrypt

@@ -49,7 +49,6 @@ module.exports = app => {
     scope: ['user:email'],
     callbackURL: process.env.GOOGLE_CALLBACK_URL,
   }, (token, tokenSecret, profile, done) => {
-    console.log(profile)
     const { name, email } = profile._json
     User.findOne({ email })
       .then(user => {
