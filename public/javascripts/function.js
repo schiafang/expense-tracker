@@ -1,3 +1,4 @@
+const Record = require('../../models/record')
 module.exports = {
   dateFormat: date => {
     const year = String(date.getFullYear())
@@ -17,6 +18,12 @@ module.exports = {
     }
     const numberFormat = totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     return numberFormat
+  },
+  getCategoryAmount: record => {
+    const categorie = { '餐飲食品': 0, '家居物業': 0, '交通出行': 0, '休閒娛樂': 0, '其他': 0 }
+    record.forEach(item => {
+      categorie[item.category] += item.amount
+    })
+    return Object.values(categorie)
   }
 }
-

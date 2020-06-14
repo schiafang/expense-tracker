@@ -42,11 +42,18 @@ a {
   visibility: visible;
 }
 .total-amount {
-  margin: -10px 0px -10px 0px;
+  margin: 190px 0px -10px 0px;
   font-size: 80px;
   font-weight: 800;
   font-family: 'Rubik', sans-serif;
   font-style: italic;
+  position: absolute;
+}
+.chart-container {
+  width: 510px;
+}
+.chart-container:hover {
+  z-index: 999;
 }
 #filter-category, #filter-month {
   background-color: rgba(255, 255, 255, 0);

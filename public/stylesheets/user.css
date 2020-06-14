@@ -29,6 +29,7 @@ body {
   border-radius: 3px;
   color:rgb(104, 104, 104);
   line-height: 35px;
+  display: inline-block;
 }
 .input-field:hover {
   background-color: rgba(225,98,89,.1);
@@ -46,4 +47,20 @@ body {
 .btn {
   background-color: #E16259;
   color: white;
+}
+.valid::after{
+  position: absolute;
+  content: "✓";
+  margin: -35px 0px 0px 200px;
+  color: green;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.invalid::after{
+  position: absolute;
+  content: "x";
+  margin: -35px 0px 0px 200px;
+  color: rgb(167, 13, 13);
+  font-size: 20px;
+  font-weight: bolder;
 }

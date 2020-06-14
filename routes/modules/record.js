@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
-const { dateFormat, getTotalAmount } = require('../../public/javascripts/function')
+const { dateFormat, getTotalAmount, getCategoryAmount } = require('../../public/javascripts/function')
 
 
 // -----Read----- //
@@ -13,6 +13,8 @@ router.get('/category', (req, res) => {
   const filter = req.query.filter
   const userId = req.user._id
   if (filter.length === 0) { return res.redirect('/') }
+
+  console.log(categoryAmount)
   Record.find({ category: `${req.query.filter}`, userId })
     .lean()
     .then(record => {
@@ -33,25 +35,31 @@ router.get('/months', (req, res) => {
   const userId = req.user._id
   const month = req.query.months
   const months = []
-  Record.find({ userId }) // 搜尋全部資料得到分類
-    .then(record => {
-      console.log(record)
-      record.forEach(item => {
-        const dateResult = new Date(item.date)
-        const monthFormat = dateFormat(dateResult)
-        if (months.includes(monthFormat)) return
-        months.push(monthFormat)
+  const promises = []
+  let categoryAmount = []
+  promises.push(
+    Record.find({ date: { $regex: month }, userId })
+      .then(record => categoryAmount = getCategoryAmount(record))
+  )
+  Promise.all(promises).then(() => {
+    Record.find({ userId }) // 搜尋全部資料得到分類
+      .then(record => {
+        record.forEach(item => {
+          const dateResult = new Date(item.date)
+          const monthFormat = dateFormat(dateResult)
+          if (months.includes(monthFormat)) return
+          months.push(monthFormat)
+        })
       })
-    })
-  Record.find({ date: { $regex: month }, userId })  // 渲染選擇的月份
-    .lean()
-    .then(record => {
-      const totalAmountFormat = getTotalAmount(record)
-      res.render('index', { record, totalAmountFormat, months })
-    })
-    .catch(error => console.log('error!'))
+    Record.find({ date: { $regex: month }, userId })  // 渲染選擇的月份
+      .lean()
+      .then(record => {
+        const totalAmountFormat = getTotalAmount(record)
+        res.render('index', { record, totalAmountFormat, months, categoryAmount })
+      })
+      .catch(error => console.log('error!'))
+  })
 })
-
 
 router.get('/:id', (req, res) => {
   const id = req.params.id
@@ -65,7 +73,6 @@ router.get('/:id', (req, res) => {
 router.post('/create', (req, res) => {
   const body = req.body
   body.userId = req.user._id
-  // Record.find({ categoryName: { $regex: '' } }) //???
   Record.find()
     .lean()
     .then(record => {

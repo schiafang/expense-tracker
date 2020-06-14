@@ -4,25 +4,27 @@
       註冊
     </div>
     {{> message}}
-    <form action="/users/register" method="POST" id="user-form" name="user-form" onsubmit="return checkPassword()">
+    <form action="/users/register" method="POST" id="user-form" name="user-form">
       <div class="form-group">
         <div class="input-field">
           <i class="ml-2 mr-1 far fa-user"></i>
           <input type="text" name="username" placeholder="username" value="{{username}}" required>
-
+          <div></div>
         </div>
       </div>
       <div class="form-group">
         <div class="input-field">
           <i class="ml-2 mr-1 far fa-envelope"></i>
           <input type="email" name="email" placeholder="email" value="{{email}}" required>
+          <div></div>
         </div>
       </div>
       <div class="form-group">
         <div class="input-field">
           <i class="ml-2 mr-1 fa fa-key" aria-hidden="true"></i>
-          <input type="password" id="password" name="password" placeholder="password" value="{{password}}" required
-            pattern=".{8,}">
+          <input type="password" id="password" name="password" placeholder="password" value="{{password}}"
+            pattern="\w{4,10}" required>
+          <div></div>
         </div>
       </div>
       <div class="form-group">
@@ -30,25 +32,13 @@
           <i class="ml-2 mr-1 fas fa-lock"></i>
           <input type="password" id="confirm-password" name="confirmPassword" placeholder="confirm password"
             onchange="checkPassword()" required>
+          <div></div>
         </div>
       </div>
       <button class="btn">Sign up</button>
     </form>
-
     <a href="/users/login" class="mt-4" style="text-decoration: none;">Already have account</a>
   </div>
 </div>
-
-<script>
-
-  function checkPassword() {
-    const password = document.querySelector('#password').value
-    const confirmPassword = document.querySelector('#confirm-password').value
-    const confirmPasswordDOM = document.querySelector('#confirm-password')
-    if (password !== confirmPassword) {
-      confirmPasswordDOM.setCustomValidity("確認密碼錯誤，請再次輸入相同密碼")
-      return false
-    }
-    else { return true }
-  }
-</script>
+<!-- <i class="fas fa-check" style="position: absolute;"></i> -->
+<script src="/javascripts/formcheck.js"></script>
