@@ -4,9 +4,9 @@ const Record = require('../../models/record')
 const { dateFormat, getTotalAmount, getCategoryAmount } = require('../../public/javascripts/function')
 
 router.get('/', (req, res) => {
-  const filter = '全部支出'
   const userId = req.user._id
   const username = req.user.username
+  const categories = ['餐飲食品', '休閒娛樂', '家居物業', '交通出行', '其他']
   const promises = []
   let categoryAmount = []
   promises.push(
@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
         let noExpense = false
         if (record.length === 0) noExpense = true
         // render page
-        res.render('index', { record, totalAmountFormat, filter, months, noExpense, username, categoryAmount })
+        res.render('index', { record, totalAmountFormat, months, categories, noExpense, username, categoryAmount })
       })
       .catch(error => console.log('route error!'))
   })

@@ -9,64 +9,6 @@ router.get('/create', (req, res) => {
   res.render('new')
 })
 
-router.get('/category', (req, res) => {
-  const filter = req.query.filter
-  const userId = req.user._id
-  const promises = []
-  const months = []
-  if (filter.length === 0) { return res.redirect('/') }
-  promises.push(
-    Record.find({ userId }) // 搜尋全部資料得到分類
-      .then(record => {
-        record.forEach(item => {
-          const dateResult = new Date(item.date)
-          const monthFormat = dateFormat(dateResult)
-          if (months.includes(monthFormat)) return
-          return months.push(monthFormat)
-        })
-      })
-  )
-  Promise.all(promises).then(() => {
-    Record.find({ category: `${req.query.filter}`, userId })
-      .lean()
-      .then(record => {
-        const totalAmountFormat = getTotalAmount(record)
-        res.render('index', { record, totalAmountFormat, filter, months })
-      })
-      .catch(error => console.log('error!'))
-  })
-})
-
-router.get('/months', (req, res) => {
-  const userId = req.user._id
-  const selectMonth = req.query.months
-  const months = []
-  const promises = []
-  let categoryAmount = []
-  promises.push(
-    Record.find({ date: { $regex: selectMonth }, userId })
-      .then(record => categoryAmount = getCategoryAmount(record))
-  )
-  Promise.all(promises).then(() => {
-    Record.find({ userId }) // 搜尋全部資料得到分類
-      .then(record => {
-        record.forEach(item => {
-          const dateResult = new Date(item.date)
-          const monthFormat = dateFormat(dateResult)
-          if (months.includes(monthFormat)) return
-          months.push(monthFormat)
-        })
-      })
-    Record.find({ date: { $regex: selectMonth }, userId })  // 渲染選擇的月份
-      .lean()
-      .then(record => {
-        const totalAmountFormat = getTotalAmount(record)
-        res.render('index', { record, totalAmountFormat, months, categoryAmount, selectMonth })
-      })
-      .catch(error => console.log('error!'))
-  })
-})
-
 router.get('/:id', (req, res) => {
   const id = req.params.id
   Record.findById(id)
