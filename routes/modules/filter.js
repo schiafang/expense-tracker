@@ -9,10 +9,15 @@ router.get('/', (req, res) => {
   const selectCategory = req.query.categories
   const months = [] //選單月份
   const categories = ['餐飲食品', '休閒娛樂', '家居物業', '交通出行', '其他']
-  const startDate = selectMonth + '-00'
-  const endDate = selectMonth + '-31'
+  // const startDate = selectMonth + '-00'
+  // const endDate = selectMonth + '-31'
 
   console.log(req.query)
+
+  const filter = { userId } //搜尋條件
+
+  if (selectMonth.length !== 0) filter.date = { $regex: selectMonth }
+  if (selectCategory.length !== 0) filter.category = selectCategory
 
   Record.find({ userId }) // 搜尋全部資料得到有支出的月份來渲染月份選單
     .then(record => {
@@ -24,12 +29,13 @@ router.get('/', (req, res) => {
       })
     })
 
-  Record.find({ userId, date: { $gte: startDate, $lt: endDate }, category: { $regex: selectCategory } })
+  // Record.find({ userId, date: { $gte: startDate, $lt: endDate }, category: 'all' })
+  Record.find(filter)
     .lean()
     .then(record => {
       categoryAmount = getCategoryAmount(record) //甜甜圈表的金額
       const totalAmountFormat = getTotalAmount(record)  //總金額
-      res.render('index', { record, months, selectMonth, categories, selectCategory, totalAmountFormat, categoryAmount })
+      res.render('index', { record, months, categories, totalAmountFormat, categoryAmount })
     })
 })
 
