@@ -5,14 +5,23 @@ a {
   text-decoration: none;
 }
 /* Index page */
+.index-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .navbar {
   display: flex;
   justify-content: center;
 }
-.no-expense {
+.navbar-brand img {
+  width: 80px;
+}
+.no-record {
   font-size: 25px;
-  margin-top: 100px;
   color: gray;
+  text-align: center;
+  margin-top: 80px;
 }
 .tip-text {
   visibility: hidden;
@@ -21,7 +30,7 @@ a {
   color: #fff;
   text-align: center;
   padding: 5px 0;
-  margin-top: 80px;
+  margin-top: 50px;
   border-radius: 6px;
   position: absolute;
   z-index: 1;
@@ -42,63 +51,78 @@ a {
   visibility: visible;
 }
 .total-amount {
-  margin: 190px 0px -10px 0px;
-  font-size: 80px;
+  margin-top: 130px;
+  font-size: 60px;
   font-weight: 800;
   font-family: 'Rubik', sans-serif;
   font-style: italic;
   position: absolute;
 }
 .chart-container {
-  width: 510px;
+  width: 310px;
 }
 .chart-container:hover {
   z-index: 999;
 }
+#myChart {
+  width: 300px;
+  height: 300px;
+}
+.filter {
+  display: flex;
+  justify-content: space-around;
+}
 #filter-category, #filter-month {
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 3px 4px 8px rgb(189, 189, 189);
-  width: 200px;
+  width: 160px;
 }
-.category-icon {
+.record-list {
+  overflow: auto;
+  height: 500px;
+  width: 350px;
+  margin-bottom: 50px;
+}
+.list-group-item {
+  margin-top: 2px;
+  border: none;
   display: flex;
-  justify-content: center;
-  width: 15px; 
-  margin: 10px 25px 0px -25px;
+  flex-direction: row;
 }
-.category-icon i {
-  margin-top: 10px;
-  font-size: 25px;
-} 
+.list-top {
+  display: flex;
+  margin-top: 5px;
+}
+.category-icon i { font-size: 25px; }
 .category-icon .fa-home { color: rgb(208, 177, 21); }
 .category-icon .fa-shuttle-van { color: rgb(55, 126, 152);}
 .category-icon .fa-grin-beam {color: rgb(53, 140, 92); }
 .category-icon .fa-utensils { color: rgb(131, 64, 126);}
 .category-icon .fa-pen {color: rgb(117, 123, 125); }
 
-.list-group-item {
-  margin-top: 2px;
-  border: none;
-}
 .list-name {
-  font-size: 16px;
+  font-size: 18px;
   width: 180px;
-  margin-top: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: rgb(66,66,66);
   letter-spacing: 1px;
+  padding-left: 8px;
+}
+.list-bottom {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
 }
 .list-date {
-font-size: 12px;
-font-style: italic;
-color: gray;
+  font-size: 12px;
+  font-style: italic;
+  color: gray;
+  width: 200px;
 }
 .list-amount {
-  width:180px;
-  margin-top: 5px;
-  margin-left: 10px;
+  width: 100px;
   font-family: 'Rubik', sans-serif;
   color: rgb(94, 158, 185,0.8);
   font-weight: bold;
@@ -109,32 +133,31 @@ color: gray;
 .delete-btn {
   border: none;
   background-color: transparent;
-  font-size: 20px; 
-  color:rgb(120, 120, 120, .1);
+  font-size: 10px; 
+  color:rgb(120, 120, 120, .3);
   position: absolute;
-  margin-left: -30px;
+  margin: -10px 0px 0px -10px;
 }
 .delete-btn:hover {
   cursor: pointer;
   color:rgb(163, 27, 27);
-  font-size: 30px;
+  font-size: 20px;
+  margin: -15px 0px 0px -15px;
 }
-.record-list {
-  padding-top: 10px;
-  overflow: auto;
-  height: 450px;
-  margin-top: 10px;
-}
-.index-container {
+.footer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  margin-bottom: -100px;
+}
+.logout img{
+  width: 30px;
 }
 
 /* New and edit page */
 .create-form {
   width: 300px;
   height: 450px;
+  margin-top: 50px;
   background-color: rgb(60, 60, 60);
   border-radius: 10px;
   box-shadow: 0px 0px 25px rgb(82, 80, 78);
@@ -144,7 +167,6 @@ color: gray;
   align-items: center;
 }
 .form-control {
-  /* width: 205px; */
   background-color: rgb(240, 240, 240,0.9);
   border: none;
   margin-top: 1.5em;
@@ -156,56 +178,32 @@ color: gray;
 ::-webkit-inner-spin-button { display: none; }   
 ::-webkit-datetime-edit-text {  padding: 5px; } 
 
-@media (min-width: 576px) {
-  .create-form {
-    width: 400px;
-    margin-top: 50px;
-    padding-top: 20px;
-  }
-  .form-control {
-    width: 205px;
-  }
-  .total-amount {
-    font-size: 100px;
-  }
-  .category-icon {
-    width: 50px; 
-    margin-right: 10px;
-    margin-left: 30px;
-  }
-  .category-icon i {
-    font-size: 40px;
-    margin-top: 10px;
-  } 
-  .list-group-item {
-    margin-top: 2px;
-    border: none;
-  }
-  .list-name {
-    width: 115px;
-    margin-top: 5px;
-  }
-  .list-amount {
-    margin: 0px;
-    width: auto;
-    text-align: start;
-    font-size: 25px;
-  }
-  .edit-btn-group {
-    display: flex;
-    flex-direction: row;
-  }
-}
+@media (min-width: 992px) {
 
-@media (min-width: 768px) {
-  .record-list {
-    width: 700px;
-  }
-  .category-icon i {
-    font-size: 45px;
-    margin-top: 5px;
-  } 
-  .list-name {
-    width: 210px;
-  }
+.index-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 50px;
 }
+.index-left {
+  margin-right: 30px;
+}
+.chart-container {
+  margin-top: -50px;
+}
+.total-amount {
+  margin-top: 150px;
+  font-size: 70px;
+}
+.chart-container {
+  margin-top: -10px;
+  width: 380px;
+}
+.record-list {
+  overflow: auto;
+  height: 500px;
+  width: 350px;
+  margin-bottom: 50px;
+}}

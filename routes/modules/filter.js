@@ -12,8 +12,6 @@ router.get('/', (req, res) => {
   // const startDate = selectMonth + '-00'
   // const endDate = selectMonth + '-31'
 
-  console.log(req.query)
-
   const filter = { userId } //搜尋條件
 
   if (selectMonth.length !== 0) filter.date = { $regex: selectMonth }
