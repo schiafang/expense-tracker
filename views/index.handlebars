@@ -15,17 +15,17 @@
     <canvas id="myChart" width="300" height="300"></canvas>
   </div>
   <!-- filter -->
-  <div class="filter row">
-    <!-- 月份 -->
-    <form method="GET" action="/filter">
+  <!-- 月份 -->
+  <form method="GET" action="/filter">
+    <div class="filter row">
       <div class="filter-months">
         <select class="form-control" id="filter-month" name="months" onchange="submit()">
-          <option value="">{{selectMonth}} 月份</option>
+          {{#if selectMonth}}<option>{{selectMonth}}</option>{{/if}}
+          <option value="">全部月份</option>
           {{#each months}}
           <option value="{{this}}">{{this}}</option>
           {{/each}}
         </select>
-        {{!-- </form> --}}
       </div>
       <!-- 類別 -->
       <div class="filter-category mb-4">
@@ -37,7 +37,7 @@
           {{/each}}
         </select>
       </div>
-  </div>
+    </div>
   </form>
   <!-- 支出清單 -->
   <div class="container mb-5 record-list">
@@ -45,6 +45,11 @@
       {{#if noExpense}}
       <div class="no-expense">Hello, {{username}}
         <p> Click the piggy to add expense.</p>
+      </div>
+      {{/if}}
+      {{#if noRecord}}
+      <div class="no-record mt-5">
+        <h4>{{selectMonth}} {{selectCategory}} ，沒有支出紀錄。</h4>
       </div>
       {{/if}}
       {{#each record}}

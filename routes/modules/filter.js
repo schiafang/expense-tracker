@@ -33,9 +33,11 @@ router.get('/', (req, res) => {
   Record.find(filter)
     .lean()
     .then(record => {
+      let noRecord = false
+      if (record.length === 0) noRecord = true
       categoryAmount = getCategoryAmount(record) //甜甜圈表的金額
       const totalAmountFormat = getTotalAmount(record)  //總金額
-      res.render('index', { record, months, categories, totalAmountFormat, categoryAmount })
+      res.render('index', { record, months, categories, totalAmountFormat, categoryAmount, selectCategory, selectMonth, noRecord })
     })
 })
 
